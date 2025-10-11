@@ -52,7 +52,7 @@ python app.py
 
 Open your browser and go to:
 
-http://127.0.0.1:5000/
+https://testing-news-summarizer-workspace.streamlit.app/
 
 
 Paste any news article URL to get an instant summary.
