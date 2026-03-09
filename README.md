@@ -1,66 +1,70 @@
-📰 News Article Summarizer
+# 📰 News Article Summarizer
 
-A Flask-based web application that uses Natural Language Processing (NLP) to automatically summarize news articles from URLs. The app extracts the main text from an online article and provides a concise summary for quick reading.
+A Flask-based web application that uses NLP to automatically summarize news articles from any URL. Paste a link, get an instant summary with article images.
 
-🚀 Features
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Flask](https://img.shields.io/badge/Flask-3.0-green)
+![HuggingFace](https://img.shields.io/badge/HuggingFace-Transformers-yellow)
 
-Extracts full text from a news article URL.
+## 🚀 Features
 
-Generates a short, clear summary using facebook/bart-large-cnn NLP model.
+- Extracts full text from any news article URL
+- Generates concise summaries using **DistilBART** NLP model
+- Displays article images alongside the summary
+- Modern, responsive dark-theme UI
+- Handles common scraping and parsing errors gracefully
 
-Simple web interface built with Flask.
+## 🛠️ Tech Stack
 
-Handles common scraping and parsing errors.
+| Technology | Purpose |
+|---|---|
+| Python 3.10 | Runtime |
+| Flask | Web framework |
+| HuggingFace Transformers | Summarization (`distilbart-cnn-12-6`) |
+| Newspaper3k | Article extraction |
+| BeautifulSoup4 | HTML parsing |
+| Gunicorn | Production WSGI server |
 
-🛠️ Tech Stack
+## 📦 Installation
 
-Python 3
-
-Flask – Web framework
-
-Hugging Face Transformers – Summarization model
-
-Newspaper3k – Article extraction
-
-BeautifulSoup – HTML parsing
-
-📦 Installation
-
-Clone the repository
-
+```bash
+# Clone the repository
 git clone https://github.com/tharun-7733/News-Article-Summarizer.git
 cd News-Article-Summarizer
 
-
-Create a virtual environment & activate it
-
+# Create a virtual environment & activate it
 python -m venv venv
-source venv/bin/activate  # Mac/Linux
-venv\Scripts\activate     # Windows
+source venv/bin/activate    # Mac/Linux
+# venv\Scripts\activate     # Windows
 
-
-Install dependencies
-
+# Install dependencies
 pip install -r requirements.txt
+```
 
-▶️ Usage
+## ▶️ Usage
 
-Run the Flask app
+```bash
+# Run the Flask app locally
+python news.py
+```
 
-python app.py
+Open your browser at **http://127.0.0.1:5000** and paste any news article URL to get an instant summary.
 
+## 🌐 Deployment (Render)
 
-Open your browser and go to:
+1. Push this repo to GitHub
+2. Go to [render.com](https://render.com) → **New Web Service**
+3. Connect your GitHub repo
+4. Settings:
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `gunicorn news:app`
+   - **Python Version:** `3.10.14` (set via `runtime.txt`)
+5. Click **Deploy**
 
-https://testing-news-summarizer-workspace.streamlit.app/
+> **Note:** The model (~1.2 GB) may require a paid tier for sufficient memory.
 
+## 📌 Example
 
-Paste any news article URL to get an instant summary.
+**Input:** Paste any news article URL (e.g., from BBC, CNN, Times of India)
 
-📌 Example
-
-Input:
-https://example.com/news/article
-
-Output:
-A short paragraph summarizing the main points of the article with images.
+**Output:** A concise paragraph summarizing the key points, along with article images.

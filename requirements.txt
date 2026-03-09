@@ -1,8 +1,8 @@
-flask
-gunicorn
-transformers
-torch
+flask>=3.0
+gunicorn>=21.2
+transformers>=4.30
+torch>=2.0
 newspaper3k
 lxml_html_clean
-beautifulsoup4
-requests
+beautifulsoup4>=4.12
+requests>=2.31
