@@ -9,7 +9,7 @@ from urllib.parse import urljoin
 app = Flask(__name__)
 CORS(app)
 
-summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
+summarizer = pipeline(model="sshleifer/distilbart-cnn-12-6")
 
 MAX_CHAR_LENGTH = 4000
 
