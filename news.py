@@ -7,7 +7,11 @@ from urllib.parse import urljoin
 
 app = Flask(__name__)
 
-summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
+summarizer = pipeline(
+    task="summarization",
+    model="sshleifer/distilbart-cnn-12-6",
+    device=-1
+)
 
 MAX_CHAR_LENGTH = 4000  # Keep input within model's token limit
 
