@@ -48,7 +48,7 @@ pip install -r requirements.txt
 python news.py
 ```
 
-Open your browser at **http://127.0.0.1:5000** and paste any news article URL to get an instant summary.
+Open your browser at **https://news-article-summarizer-gd37.onrender.com** and paste any news article URL to get an instant summary.
 
 ## 🌐 Deployment (Render)
 
