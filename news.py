@@ -7,11 +7,17 @@ from urllib.parse import urljoin
 
 app = Flask(__name__)
 
-summarizer = pipeline(
-    task="summarization",
-    model="sshleifer/distilbart-cnn-12-6",
-    device=-1
-)
+summarizer = None
+
+def get_summarizer():
+    global summarizer
+    if summarizer is None:
+        summarizer = pipeline(
+            "summarization",
+            model="sshleifer/distilbart-cnn-12-6",
+            device=-1
+        )
+    return summarizer
 
 MAX_CHAR_LENGTH = 4000  # Keep input within model's token limit
 
@@ -60,14 +66,15 @@ def summarize_article():
             try:
                 article_text, images = extract_text_from_url(url)
                 if len(article_text.strip()) > 100:
-                    # Truncate to stay within model token limit
                     truncated_text = article_text[:MAX_CHAR_LENGTH]
-                    summary = summarizer(
+                
+                    summary = get_summarizer()(
                         truncated_text,
                         max_length=150,
                         min_length=30,
                         do_sample=False
                     )
+                
                     summary_text = summary[0]['summary_text']
                 else:
                     error = "Article text is too short to summarize."
@@ -76,5 +83,8 @@ def summarize_article():
     return render_template('index.html', summary=summary_text, images=images, error=error)
 
 
+import os
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
